@@ -5,15 +5,15 @@ from app.services.feedback import load_policy
 
 # Ground truth 
 ground_truth = {}
-with open("../sample_data/ground_truth_hard.csv") as f:
+with open("../sample_data/ground_truth.csv") as f:
     reader = csv.DictReader(f)
     for row in reader:
         gt_id = row["ground_truth_ledger_id"].strip()
         ground_truth[row["bank_transaction_id"]] = None if gt_id in ("NO_MATCH", "") else gt_id
 
 
-txns = load_bank_statement("../sample_data/bank_statement_hard.csv")
-ledger = load_ledger("../sample_data/ledger_hard.csv")
+txns = load_bank_statement("../sample_data/bank_statement.csv")
+ledger = load_ledger("../sample_data/ledger.csv")
 policy = load_policy()
 result = run_pipeline(
     txns, ledger, use_llm=True,
