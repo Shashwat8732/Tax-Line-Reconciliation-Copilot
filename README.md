@@ -148,3 +148,8 @@ Manual reconciliation takes roughly 5 minutes per transaction. On our 63-transac
 ---
 
 Built for Razorpay Build Fest, Track 04 -- "Throughput plus measured accuracy plus an honest exception list. One cherry-picked match proves nothing."
+
+---
+
+**Made by Shashwat Raj** | [GitHub](https://github.com/Shashwat8732) | [LinkedIn](https://www.linkedin.com/in/shashwatraj1412/)
+
