@@ -84,9 +84,9 @@ Enterprise reconciliation tools (Tally, Zoho Books, HighRadius) already exist --
 - backend/dashboard.py -- Streamlit dashboard (upload, run, review, export)
 - backend/evaluate.py -- Precision, Recall, F1 against ground truth
 - backend/test_matching.py -- Unit tests
-- sample_data/bank_statement_hard.csv -- 63 sample bank transactions
-- sample_data/ledger_hard.csv -- 62 sample ledger entries
-- sample_data/ground_truth_hard.csv -- Labeled correct answers for accuracy measurement
+- sample_data/bank_statement.csv -- 63 sample bank transactions
+- sample_data/ledger.csv -- 62 sample ledger entries
+- sample_data/ground_truth.csv -- Labeled correct answers for accuracy measurement
 
 ---
 
@@ -105,7 +105,7 @@ Run the dashboard:
 
 streamlit run dashboard.py
 
-Then in the browser: upload bank_statement_hard.csv, ledger_hard.csv, and optionally ground_truth_hard.csv from sample_data/, and click Run Reconciliation.
+Then in the browser: upload bank_statement.csv, ledger.csv, and optionally ground_truth_hard.csv from sample_data/, and click Run Reconciliation.
 
 Or run the evaluation directly (no UI):
 
