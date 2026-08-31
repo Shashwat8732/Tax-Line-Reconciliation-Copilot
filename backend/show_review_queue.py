@@ -2,8 +2,8 @@ from app.services.ingestion import load_bank_statement, load_ledger
 from app.services.pipeline import run_pipeline
 from app.services.feedback import load_policy
 
-txns = load_bank_statement("../sample_data/bank_statement_hard.csv")
-ledger = load_ledger("../sample_data/ledger_hard.csv")
+txns = load_bank_statement("../sample_data/bank_statement.csv")
+ledger = load_ledger("../sample_data/ledger.csv")
 ledger_by_id = {e.id: e for e in ledger}
 txn_by_id = {t.id: t for t in txns}
 
