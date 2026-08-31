@@ -49,8 +49,8 @@ if run_button:
         import os as _os
 
         _sample_dir = _os.path.join(_os.path.dirname(__file__), "..", "sample_data")
-        _default_bank = _os.path.join(_sample_dir, "bank_statement_hard.csv")
-        _default_ledger = _os.path.join(_sample_dir, "ledger_hard.csv")
+        _default_bank = _os.path.join(_sample_dir, "bank_statement.csv")
+        _default_ledger = _os.path.join(_sample_dir, "ledger.csv")
 
         if bank_file:
             with open("/tmp/_bank.csv", "wb") as f:
