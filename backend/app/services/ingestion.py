@@ -6,16 +6,7 @@ from app.models.schemas import BankTransaction, LedgerEntry
 
 
 def _clean_amount(raw) -> float:
-    """
-    Robust amount parser -- handles messy real-world formats:
-      "Rs. 4,783.95"   "INR 12,000"    "$1,234.56"
-      "(500.00)"        -> negative     "-500"          -> negative
-      "12.345,67"       -> European style (dot=thousands, comma=decimal)
-      "1,23,456.78"     -> Indian lakh/crore grouping
-      "  9999  "        -> whitespace
-    Returns 0.0 for empty/unparseable values rather than crashing the whole batch --
-    one malformed row should not take down the entire reconciliation run.
-    """
+   
     if pd.isna(raw):
         return 0.0
     s = str(raw).strip()

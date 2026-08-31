@@ -21,6 +21,11 @@ st.caption("Confidence-tiered | Cost-aware | Explainable | Gated")
 
 # SIDEBAR
 st.sidebar.header("Upload Data")
+st.sidebar.info(
+    "👉 Click **Run Reconciliation** to try it with sample data -- "
+    "or upload your own CSVs (see `sample_data/` in our repo for format).\n\n"
+    "New data takes a few seconds per LLM call (free-tier Groq); repeat runs are instant (cached)."
+)
 bank_file = st.sidebar.file_uploader("Bank statement CSV", type="csv")
 ledger_file = st.sidebar.file_uploader("Ledger CSV", type="csv")
 ground_truth_file = st.sidebar.file_uploader("Ground truth CSV (optional -- for accuracy metrics)", type="csv")
@@ -40,49 +45,71 @@ if "ground_truth" not in st.session_state:
     st.session_state.ground_truth = None
 
 if run_button:
-    if not bank_file or not ledger_file:
-        st.sidebar.error("Please upload both Bank and Ledger CSVs.")
-    else:
-        with st.spinner("Running pipeline..."):
-            
+    with st.spinner("Running pipeline..."):
+        import os as _os
+
+        _sample_dir = _os.path.join(_os.path.dirname(__file__), "..", "sample_data")
+        _default_bank = _os.path.join(_sample_dir, "bank_statement_hard.csv")
+        _default_ledger = _os.path.join(_sample_dir, "ledger_hard.csv")
+
+        if bank_file:
             with open("/tmp/_bank.csv", "wb") as f:
                 f.write(bank_file.getbuffer())
+            bank_path = "/tmp/_bank.csv"
+        else:
+            bank_path = _default_bank
+            st.sidebar.info("No bank CSV uploaded -- using sample data.")
+
+        if ledger_file:
             with open("/tmp/_ledger.csv", "wb") as f:
                 f.write(ledger_file.getbuffer())
+            ledger_path = "/tmp/_ledger.csv"
+        else:
+            ledger_path = _default_ledger
+            st.sidebar.info("No ledger CSV uploaded -- using sample data.")
 
-            txns = load_bank_statement("/tmp/_bank.csv")
-            ledger = load_ledger("/tmp/_ledger.csv")
-            policy = load_policy()
-            result = run_pipeline(
-                txns, ledger, use_llm=use_llm,
-                stage2_config={
-                    "amount_tolerance": 100.0, "date_window_days": 5,
-                    "auto_threshold": policy["stage2_auto_threshold"],
-                    "review_threshold": 0.5,
-                },
-                enforce_idempotency=False,
-            )
-            st.session_state.result = result
-            st.session_state.txn_by_id = {t.id: t for t in txns}
-            st.session_state.ledger_by_id = {e.id: e for e in ledger}
+        txns = load_bank_statement(bank_path)
+        ledger = load_ledger(ledger_path)
+        policy = load_policy()
+        result = run_pipeline(
+            txns, ledger, use_llm=use_llm,
+            stage2_config={
+                "amount_tolerance": 100.0, "date_window_days": 5,
+                "auto_threshold": policy["stage2_auto_threshold"],
+                "review_threshold": 0.5,
+            },
+            enforce_idempotency=False,
+        )
+        st.session_state.result = result
+        st.session_state.txn_by_id = {t.id: t for t in txns}
+        st.session_state.ledger_by_id = {e.id: e for e in ledger}
 
-            
-            if ground_truth_file:
+        if ground_truth_file:
+            gt = {}
+            reader = csv.DictReader(io.StringIO(ground_truth_file.getvalue().decode("utf-8")))
+            for row in reader:
+                gt_id = row["ground_truth_ledger_id"].strip()
+                gt[row["bank_transaction_id"]] = None if gt_id in ("NO_MATCH", "") else gt_id
+            st.session_state.ground_truth = gt
+        else:
+            _default_gt = _os.path.join(_sample_dir, "ground_truth_hard.csv")
+            if _os.path.exists(_default_gt):
                 gt = {}
-                reader = csv.DictReader(io.StringIO(ground_truth_file.getvalue().decode("utf-8")))
-                for row in reader:
-                    gt_id = row["ground_truth_ledger_id"].strip()
-                    gt[row["bank_transaction_id"]] = None if gt_id in ("NO_MATCH", "") else gt_id
+                with open(_default_gt) as gtf:
+                    reader = csv.DictReader(gtf)
+                    for row in reader:
+                        gt_id = row["ground_truth_ledger_id"].strip()
+                        gt[row["bank_transaction_id"]] = None if gt_id in ("NO_MATCH", "") else gt_id
                 st.session_state.ground_truth = gt
+                st.sidebar.info("Using sample ground truth for accuracy metrics.")
             else:
                 st.session_state.ground_truth = None
+    st.success("Done!")
 
-        st.success("Done!")
-
-        cache_hits = result["summary"].get("cache_hit_count", 0)
-        live_calls = result["summary"].get("llm_calls_made", 0)
-        if cache_hits > 0:
-            st.info(f"💾 {cache_hits} response(s) loaded from cache -- {live_calls} new LLM call(s) made. Faster and rate-limit safe.")
+    cache_hits = result["summary"].get("cache_hit_count", 0)
+    live_calls = result["summary"].get("llm_calls_made", 0)
+    if cache_hits > 0:
+        st.info(f"💾 {cache_hits} response(s) loaded from cache -- {live_calls} new LLM call(s) made. Faster and rate-limit safe.")
 
 result = st.session_state.result
 
