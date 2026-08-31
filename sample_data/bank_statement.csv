@@ -1,0 +1,51 @@
+Date,Amount,Reference,Narration
+2025-01-03,13826.26,INV2001,Payment to Kumar and Sons Pvt Ltd
+2025-01-04,22450.00,INV2002,NEFT to Gupta Enterprises
+2025-01-05,15000.00,INV2003,Payment to Sharma Traders
+2025-01-06,8999.00,INV2004,NEFT to Verma Textiles Ltd
+2025-01-07,31200.50,INV2005,Payment to Reliance Distributors
+2025-01-08,4520.00,INV2006,UPI to Singh Hardware Store
+2025-01-09,40363.72,INV2007,Payment to Patel Logistics
+2025-01-10,12800.00,INV2008,NEFT to Mehta Packaging Co
+2025-01-11,20142.64,INV2009,Payment to Nair Electricals
+2025-01-12,3281.28,INV2010,UPI to Iyer Consulting Services
+2025-01-13,17650.00,INV2011,Payment to Bose Stationery Mart
+2025-01-14,29900.00,INV2012,NEFT to Das Freight Carriers
+2025-01-15,3141.05,INV2013,Payment to Rao Chemicals Ltd
+2025-01-16,13765.26,INV2014,Payment to Joshi Furnitures
+2025-01-17,29945.03,INV2015,Payment to Khan Auto Parts
+2025-01-18,25432.48,INV2016,NEFT to Chatterjee Print House
+2025-01-19,18700.00,INV2017,Payment to Reddy Software Solutions
+2025-01-20,9450.00,INV2018,UPI to Malhotra Cold Storage
+2025-01-21,33200.00,INV2019,Payment to Yadav Cement Supply
+2025-01-22,27650.00,INV2020,NEFT to Agarwal Steel Works
+2025-01-23,14200.00,,Payment as discussed on call
+2025-01-24,8760.50,,NEFT to Gupta Enterprises
+2025-01-25,19800.00,,Transfer per email confirmation
+2025-01-26,12992.85,,Misc supplier payment
+2025-01-27,6300.00,,Being settlement for outstanding dues
+2025-01-28,21500.00,,Vendor payment - Jan batch
+2025-01-29,5480.00,,Advance against PO 4521
+2025-01-30,17250.75,,Payment - ref shared separately
+2025-01-31,9980.00,,Payment as discussed on call
+2025-02-01,26430.00,,NEFT to Rao Chemicals Ltd
+2025-02-02,11200.00,,Misc supplier payment
+2025-02-03,15990.00,,Being settlement for outstanding dues
+2025-02-04,7650.00,,Vendor payment - Feb batch
+2025-02-05,40706.25,,NEFT to Reddy Software Solutions
+2025-02-06,3200.00,,Bank charges - SMS alert
+2025-02-07,150.00,,GST TDS credit reversal
+2025-02-08,890.00,,Interest credited
+2025-02-09,450.00,,Refund - failed UPI txn
+2025-02-10,2100.00,,Bank charges - SMS alert
+2025-01-05,13826.00,INV2001,Kumar and Sons Pvt Ltd payment
+2025-01-06,22450.00,INV2002,Gupta Enterprises payment
+2025-01-10,8998.50,INV2004,Verma Textiles payment
+2025-01-12,31201.00,INV2005,Reliance Distributors payment
+2025-01-15,4519.50,INV2006,Singh Hardware payment
+2025-01-18,20140.00,INV2009,Nair Electricals payment
+2025-01-20,3282.00,INV2010,Iyer Consulting payment
+2025-01-22,17651.00,INV2011,Bose Stationery payment
+2025-01-25,29901.00,INV2012,Das Freight payment
+2025-01-28,3140.50,INV2013,Rao Chemicals payment
+2025-01-30,13766.00,INV2014,Joshi Furnitures payment
