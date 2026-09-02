@@ -1,7 +1,6 @@
-fastapi
-uvicorn
+streamlit
 pandas
 rapidfuzz
-anthropic
-python-multipart
-pydantic
+groq
+python-dotenv
+pytest
