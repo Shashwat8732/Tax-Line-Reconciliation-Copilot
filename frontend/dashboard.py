@@ -57,7 +57,7 @@ if run_button:
             bank_path = "/tmp/_bank.csv"
         else:
             bank_path = _default_bank
-            st.sidebar.info("No bank CSV uploaded -- using sample data.")
+           
 
         if ledger_file:
             with open("/tmp/_ledger.csv", "wb") as f:
@@ -65,7 +65,7 @@ if run_button:
             ledger_path = "/tmp/_ledger.csv"
         else:
             ledger_path = _default_ledger
-            st.sidebar.info("No ledger CSV uploaded -- using sample data.")
+          
 
         txns = load_bank_statement(bank_path)
         ledger = load_ledger(ledger_path)
