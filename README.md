@@ -11,9 +11,8 @@ An AI agent that closes the bank-to-ledger reconciliation loop across a batch of
 ## Demo
 
 - Live Deployed App: https://tax-line-reconciliation-copilot-main.streamlit.app
-- Demo Video: [Add your video link here]
-- GitHub Repo: [Add your repo link here]
-
+- Demo Video: ....
+  
 ---
 
 ## The Problem
